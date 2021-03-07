@@ -1,0 +1,23 @@
+---
+# tasks file for myloadbalancer      
+- name: Intalling haproxy
+  package:
+       name: "haproxy"
+       state: present
+
+- name: Updating conf file
+  template:
+       dest: "/etc/haproxy/haproxy.cfg"
+       src: "haproxy.cfg"
+  notify: "restart service"     
+
+- name: Staring Haproxy service
+  service:
+       name: "haproxy"
+       state: started
+       enabled: yes
+
+
+        
+
+
